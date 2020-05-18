@@ -1,0 +1,19 @@
+galaxy_info:
+  author: Mitesh The Mouse
+  description: Installs and configurs satellite version 6.x
+  company: Red Hat
+
+  issue_tracker_url: https://github.com/miteshget/roles/issues
+
+  license: license (GPL-2.0-or-later, MIT, etc)
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Red Hat
+      versions:
+      - 7
+  galaxy_tags:
+    - satellite_installation
+    - satellite_configuration
+    - satellite
