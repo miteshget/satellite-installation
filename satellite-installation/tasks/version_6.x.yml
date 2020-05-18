@@ -1,0 +1,73 @@
+---
+
+- name: Update satellite node
+  package:
+    name: '*'
+    state: latest
+  tags:
+    - install_satellite
+    - update_satellite_host
+
+- name: Install Satellite Package
+  package:
+    name: satellite-{{ satellite_version }}*.el7*
+    state: present
+  async: 3600
+  poll: 60
+  tags:
+    - install_satellite
+
+####### Satellite Post Installation Tasks ###############
+- name: Stat {{ env_type }}/satellite_post_installation.yml file
+  stat:
+    path: ./configs/{{ env_type }}/satellite_post_installation.yml
+  register: __post_installation
+  tags:
+    - install_satellite
+
+- name: Import Satellite Pre_tasks
+  import_tasks: ./configs/{{ env_type }}/satellite_post_installation.yml
+  when: __pre_installation.stat.exists 
+  tags:
+    - install_satellite
+
+####### Satellite Pre Configuration Tasks ###############
+- name: Stat {{ env_type }}/satellite_post_configuration.yml file
+  stat:
+    path: ./configs/{{ env_type }}/satellite_post_configuration.yml
+  register: __post_configuration
+
+- name: Import Satellite Post_tasks
+  import_tasks: ./configs/{{ env_type }}/satellite_post_configuration.yml
+  when: __post_configuration.stat.exists 
+
+########### Satellite Configuration ########
+- name: configure satellite
+  command: >-
+    satellite-installer 
+    {% if '--scenario' not in satellite_arguments %} --scenario satellite{% endif %}
+    {% if '-admin-username' not in satellite_arguments %}
+    {% if satellite_version is version('6.4', '<=') %} --foreman-admin-username {{ satellite_admin | default('admin') }}
+    {% else %} --foreman-initial-admin-username {{ satellite_admin | default('admin') }}{% endif %}
+    {% endif %}
+    {% if '-admin-password' not in satellite_arguments %}
+    {% if satellite_version is version('6.4', '<=') %} --foreman-admin-password {{ satellite_admin_password }}
+    {% else %} --foreman-initial-admin-password {{ satellite_admin_password }}{% endif %}
+    {% endif %}
+    {% if 'certs-cname' not in satellite_arguments %} --certs-cname {{inventory_hostname}}{% endif %}
+    {% if satellite_arguments is defined %}
+    {% for satellite_arguments in satellite_arguments %}
+    {{ satellite_arguments }}
+    {% endfor %}
+    {% endif %}
+
+  async: 3600
+  poll: 60
+  tags:
+    - install_satellite
+    - setup_satellite
+
+
+when: satellite_version is version_compare('6.4', '>=')
+ 
+ 

@@ -1,0 +1,35 @@
+---
+
+####### Firewalld setup ##########
+- name: Import firewall rules tasks
+  import_tasks: firewalld.yml
+  tags:
+    - install_satellite
+    - install_firewalld
+
+##### Pre satellite installation tasks #########
+- name: Stat {{ env_type }}/satellite_pre_installation.yml file
+  stat:
+    path: ./configs/{{ env_type }}/satellite_pre_installation.yml
+  register: __pre_installation
+
+- name: Import Satellite Pre_tasks
+  import_tasks: ./configs/{{ env_type }}/satellite_pre_installation.yml
+  when: __pre_installation.stat.exists 
+
+####### Import satellite tasks #############
+- name: Import satellite installation/setup tasks
+  import_tasks: version_6.x.yml
+  when: satellite_version is defined
+  tags:
+    - install_satellite
+
+##### Post satellite configuration tasks #########
+- name: Stat {{ env_type }}/satellite_post_configuration.yml file
+  stat:
+    path: ./configs/{{ env_type }}/satellite_post_configuration.yml
+  register: __post_configuration
+
+- name: Import Satellite Post_tasks
+  import_tasks: ./configs/{{ env_type }}/satellite_post_configuration.yml
+  when: __post_configuration.stat.exists 
