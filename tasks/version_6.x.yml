@@ -60,7 +60,8 @@
     {{ satellite_arguments }}
     {% endfor %}
     {% endif %}
-
+  register: command_output
+  changed_when: 'command_output.rc == 0'
   async: 3600
   poll: 60
   tags:
