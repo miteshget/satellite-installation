@@ -4,9 +4,6 @@
   package:
     name: '*'
     state: present
-  tags:
-    - install_satellite
-    - update_satellite_host
 
 - name: Install Satellite Package
   package:
@@ -14,8 +11,6 @@
     state: present
   async: 3600
   poll: 60
-  tags:
-    - install_satellite
 
 ####### Satellite Post Installation Tasks ###############
 - name: Stat {{ env_type }}/satellite_post_installation.yml file
@@ -28,8 +23,7 @@
 - name: Import Satellite Pre_tasks
   import_tasks: ./configs/{{ env_type }}/satellite_post_installation.yml
   when: __pre_installation.stat.exists 
-  tags:
-    - install_satellite
+
 
 ####### Satellite Pre Configuration Tasks ###############
 - name: Stat {{ env_type }}/satellite_post_configuration.yml file
@@ -65,7 +59,4 @@
   async: 3600
   poll: 60
   tags:
-    - install_satellite
-    - setup_satellite
- 
- 
+    - configuration
