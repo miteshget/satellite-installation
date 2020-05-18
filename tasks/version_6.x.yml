@@ -3,7 +3,7 @@
 - name: Update satellite node
   package:
     name: '*'
-    state: latest
+    state: present
   tags:
     - install_satellite
     - update_satellite_host
@@ -54,7 +54,7 @@
     {% if satellite_version is version('6.4', '<=') %} --foreman-admin-password {{ satellite_admin_password }}
     {% else %} --foreman-initial-admin-password {{ satellite_admin_password }}{% endif %}
     {% endif %}
-    {% if 'certs-cname' not in satellite_arguments %} --certs-cname {{inventory_hostname}}{% endif %}
+    {% if 'certs-cname' not in satellite_arguments %} --certs-cname {{ inventory_hostname }}{% endif %}
     {% if satellite_arguments is defined %}
     {% for satellite_arguments in satellite_arguments %}
     {{ satellite_arguments }}
