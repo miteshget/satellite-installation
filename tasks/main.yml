@@ -7,12 +7,12 @@
     - firewalld
 
 ##### Pre satellite installation tasks #########
-- name: Stat {{ env_type }}/satellite_pre_installation.yml file
+- name: Collecting stat of ./configs/{{ env_type }}/satellite_pre_installation.yml file
   stat:
     path: ./configs/{{ env_type }}/satellite_pre_installation.yml
   register: __pre_installation
 
-- name: Include Satellite Pre_tasks
+- name: Satellite Pre-installation tasks
   include_tasks: ./configs/{{ env_type }}/satellite_pre_installation.yml
   when: __pre_installation.stat.exists 
 
@@ -25,11 +25,11 @@
     - configuration
 
 ##### Post satellite configuration tasks #########
-- name: Stat {{ env_type }}/satellite_post_configuration.yml file
+- name: Collecting stat of ./configs/{{ env_type }}/satellite_post_configuration.yml file
   stat:
     path: ./configs/{{ env_type }}/satellite_post_configuration.yml
   register: __post_configuration
 
-- name: Include Satellite Post_tasks
+- name: Satellite Post-configuration tasks
   include_tasks: ./configs/{{ env_type }}/satellite_post_configuration.yml
   when: __post_configuration.stat.exists 
