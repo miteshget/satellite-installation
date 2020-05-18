@@ -20,8 +20,8 @@
   tags:
     - install_satellite
 
-- name: Import Satellite Pre_tasks
-  import_tasks: ./configs/{{ env_type }}/satellite_post_installation.yml
+- name: Include Satellite Pre_tasks
+  include_tasks: ./configs/{{ env_type }}/satellite_post_installation.yml
   when: __pre_installation.stat.exists 
 
 
@@ -31,8 +31,8 @@
     path: ./configs/{{ env_type }}/satellite_post_configuration.yml
   register: __post_configuration
 
-- name: Import Satellite Post_tasks
-  import_tasks: ./configs/{{ env_type }}/satellite_post_configuration.yml
+- name: Include Satellite Post_tasks
+  include_tasks: ./configs/{{ env_type }}/satellite_post_configuration.yml
   when: __post_configuration.stat.exists 
 
 ########### Satellite Configuration ########
