@@ -66,8 +66,5 @@
   tags:
     - install_satellite
     - setup_satellite
-
-
-when: satellite_version is version_compare('6.4', '>=')
  
  
