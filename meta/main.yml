@@ -10,9 +10,9 @@ galaxy_info:
   min_ansible_version: 2.9
 
   platforms:
-    - name: Red Hat
+    - name: rhel
       versions:
-      - 7
+      - 7.x
   galaxy_tags:
     - satellite_installation
     - satellite_configuration
