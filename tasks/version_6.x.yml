@@ -13,27 +13,27 @@
   poll: 60
 
 ####### Satellite Post Installation Tasks ###############
-- name: Stat {{ env_type }}/satellite_post_installation.yml file
+- name: Collecting stat of ./configs/{{ env_type }}/satellite_post_installation.yml file
   stat:
     path: ./configs/{{ env_type }}/satellite_post_installation.yml
   register: __post_installation
   tags:
     - install_satellite
 
-- name: Include Satellite Pre_tasks
+- name: Satellite Post-installation tasks
   include_tasks: ./configs/{{ env_type }}/satellite_post_installation.yml
   when: __pre_installation.stat.exists 
 
 
 ####### Satellite Pre Configuration Tasks ###############
-- name: Stat {{ env_type }}/satellite_post_configuration.yml file
+- name: Collecting stat of ./configs/{{ env_type }}/satellite_pre_configuration.yml file
   stat:
-    path: ./configs/{{ env_type }}/satellite_post_configuration.yml
-  register: __post_configuration
+    path: ./configs/{{ env_type }}/satellite_pre_configuration.yml
+  register: __pre_configuration
 
-- name: Include Satellite Post_tasks
-  include_tasks: ./configs/{{ env_type }}/satellite_post_configuration.yml
-  when: __post_configuration.stat.exists 
+- name: Satellite Pre-configuration tasks
+  include_tasks: ./configs/{{ env_type }}/satellite_pre_configuration.yml
+  when: __pre_configuration.stat.exists 
 
 ########### Satellite Configuration ########
 - name: configure satellite
