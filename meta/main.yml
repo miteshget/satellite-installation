@@ -1,6 +1,6 @@
 galaxy_info:
   author: Mitesh The Mouse
-  description: Installs and configurs satellite version 6.x 
+  description: Installs and configures satellite version 6.x 
   company: Red Hat 
 
   issue_tracker_url: https://github.com/miteshget/roles/issues
