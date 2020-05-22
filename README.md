@@ -1,23 +1,12 @@
+Role: satellite-installation
+============================
 
-:role: satellite-installation
-:author: GPTE Team
-:tag1: install_satellite
-:tag2: install_firewalld
-:tag3: update_satellite_host
-:tag4: setup_satellite
-:main_file: tasks/main.yml
-:version_file: tasks/version_6.7.yml
-
-
-Role: {role}
-============
-
-This role installs and configure satellite and setup firewalld.
+This role installs and configure satellite and along with firewalld rules.
 
 Requirements
 ------------
 
-. Basic repository should be configure to install packages.
+. All required yum repository should be configure to install satellite packages for the version used.
 
 Role Variables
 --------------
@@ -118,4 +107,4 @@ for reference look at link:{main_file}[main.yml] and link:{version_file}[version
 Author Information
 ------------------
 
-{author}
+Mitesh The Mouse <mitsharm@redhat.com>
