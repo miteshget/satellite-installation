@@ -11,3 +11,8 @@ firewall_ports:
   - 8000/tcp
   - 8443/tcp
   - 9090/tcp
+
+org: "prod"
+
+satellite_arguments:
+  - --foreman-initial-organization "{{ org }}"
