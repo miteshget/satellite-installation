@@ -1,18 +1,16 @@
+---
+
 galaxy_info:
   author: Mitesh The Mouse
-  description: Installs and configures satellite version 6.x 
-  company: Red Hat 
-
-  issue_tracker_url: https://github.com/miteshget/roles/issues
-
+  description: Installs and configures satellite version 6.x
+  company: Red Hat
+  issue_tracker_url: https://github.com/miteshget/roles/issue
   license: license (GPL-3.0)
-
-  min_ansible_version: 2.9 
-
+  min_ansible_version: 2.9
   platforms:
-    - name: EL 
+    - name: EL
       versions:
-      - 7 
+        - 7
   galaxy_tags:
     - installation
     - configuration
