@@ -13,13 +13,13 @@ Requirements
 Role Variables
 --------------
 
-* `satellite_version: "Digit"` - Required |satellite version
-* `satellite_admin: "String"` - Required |Satellite admin username
-* `satellite_admin_password: "String"` - Required |Satellite admin password
-* `firewall_services: [List]` -Optional |List of services to enable, Default value are in defaults/main.yml
-* `firewall_ports: [List]` - Optional |List of ports to enable, Default value are in defaults/main.yml
-* `satellite_org_set_default: Bool` - Optional(*true*) |Wheter to create an org as default org, or additional one
-* `satellite_enable_rex_on_satellite_host: Bool` - |Optional(*false*) | If to allow remote execution jobs to be run against the satellite host (adds a rex key to do that).
+* `satellite_version: "Digit"` - (Required) | satellite version
+* `satellite_admin: "String"` - (Required) | Satellite admin username
+* `satellite_admin_password: "String"` - (Required) - Satellite admin password
+* `firewall_services: [List]` - (Default=defaults/main.yml) - List of firewall services to enable
+* `firewall_ports: [List]` - (Default=defaults/main.yml) - List of firewall ports to enable
+* `satellite_org_set_default: Bool` - (Default=true) - Wheter to create an org as default org, or additional one
+* `satellite_enable_rex_on_satellite_host: Bool` - (Default=false) - If to allow remote execution jobs to be run against the satellite host (adds a rex key to do that).
 
 
 * Example variables
@@ -84,19 +84,6 @@ firewall_ports:
 
 [user@desktop ~]$ ansible-playbook playbook.yml -e 'satellite_admin: admin' -e 'satellite_admin_password: password'
 ```
-
-Dependencies
-------------
-
-Role has dependency of role satellite-public-hostname.
-
-
-Tips to update Role
-------------------
-
-To extend role works for other version, create new file named  version_{{satellite_version}}.yml and import newly created file in main.yml
-
-for reference look at link:{main_file}[main.yml] and link:{version_file}[version_6.7.yml]
 
 
 Author Information
