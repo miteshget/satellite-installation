@@ -8,7 +8,8 @@ This role installs and configure satellite. Also setup & configure firewalld and
 Requirements
 ------------
 
-. All required yum repository should be configure to install satellite packages for the version used.
+* Satellite repository or subscription must be pre-configure 
+* DNS IP address must be configured, DNS server must have A and PRT records for the host. 
 
 Role Variables
 --------------
@@ -19,15 +20,14 @@ Role Variables
 * `firewall_services: [List]` - (Default=defaults/main.yml) - List of firewall services to enable
 * `firewall_ports: [List]` - (Default=defaults/main.yml) - List of firewall ports to enable
 * `satellite_org_set_default: Bool` - (Default=true) - Wheter to create an org as default org, or additional one
-* `satellite_enable_rex_on_satellite_host: Bool` - (Default=false) - If to allow remote execution jobs to be run against the satellite host (adds a rex key to do that).
 
 
-* Example variables
-
+Sample variable example 
+-----------------------
 ```
 satellite_version: 6.7
-satellite_admin: admin
-satellite_admin_password: password
+satellite_admin: <may be admin>
+satellite_admin_password: <somethingstrong>"
 firewall_services:
   - ssh
   - RH-Satellite-6
@@ -36,8 +36,10 @@ firewall_ports:
   - 80/tcp
   - 443/tcp
 ```
+
+
 Tags
----
+----
 
 
 |{tag1} |Consistent tag for all satellite install tasks
