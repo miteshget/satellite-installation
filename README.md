@@ -1,9 +1,9 @@
-|PyPI version| |Docs badge| |Chat badge| |Build Status| |Code Of Conduct| |Mailing Lists| |License|
+
 
 Role: satellite-installation
 ============================
 
-This role installs and configure satellite and along with firewalld rules.
+This role installs and configure satellite. Also setup & configure firewalld and it's rules.
 
 Requirements
 ------------
@@ -13,15 +13,14 @@ Requirements
 Role Variables
 --------------
 
-|===
-|satellite_version: "Digit" |Required |satellite version
-|satellite_admin: "String" |Required |Satellite admin username
-|satellite_admin_password: "String" |Required |Satellite admin password
-|firewall_services: [List] |Optional |List of services to enable, Default value are in defaults/main.yml
-|firewall_ports: [List] |Optional |List of ports to enable, Default value are in defaults/main.yml
-|satellite_org_set_default: "Bool" |Optional(*true*) |Wheter to create an org as default org, or additional one
-|satellite_enable_rex_on_satellite_host: Bool |Optional(*false*) | If to allow remote execution jobs to be run against the satellite host (adds a rex key to do that).
-|===
+* `satellite_version: "Digit"` - Required |satellite version
+* `satellite_admin: "String"` - Required |Satellite admin username
+* `satellite_admin_password: "String"` - Required |Satellite admin password
+* `firewall_services: [List]` -Optional |List of services to enable, Default value are in defaults/main.yml
+* `firewall_ports: [List]` - Optional |List of ports to enable, Default value are in defaults/main.yml
+* `satellite_org_set_default: Bool` - Optional(*true*) |Wheter to create an org as default org, or additional one
+* `satellite_enable_rex_on_satellite_host: Bool` - |Optional(*false*) | If to allow remote execution jobs to be run against the satellite host (adds a rex key to do that).
+
 
 * Example variables
 
