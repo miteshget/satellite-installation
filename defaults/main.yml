@@ -12,7 +12,8 @@ firewall_ports:
   - 8443/tcp
   - 9090/tcp
 
-org: "prod"
+initial_satellite_org: "prod"
 
+# this will be added or updated to exist arguments/options to satellite-installation command line
 satellite_arguments:
-  - --foreman-initial-organization "{{ org }}"
+  - --foreman-initial-organization "{{ initial_satellite_org }}"
