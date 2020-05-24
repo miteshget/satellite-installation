@@ -4,7 +4,6 @@
     name: firewalld
     state: present
 
- 
 - name: firewall | Enable and Start Firewalld
   service:
     name: firewalld
