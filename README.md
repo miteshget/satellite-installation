@@ -14,14 +14,14 @@ Requirements
 Role Variables
 --------------
 
-* `satellite_version: "Digit"` - (Required) | satellite version
-* `satellite_admin: "String"` - (Required) | Satellite admin username
-* `satellite_admin_password: "String"` - (Required) - Satellite admin password
+* `satellite_version: "Digit"`          - (Required) - satellite version
+* `satellite_admin: "String"`           - (Required) - Satellite admin username
+* `satellite_admin_password: "String"`  - (Required) - Satellite admin password
 * `satellite_arguments: [List]` - (Default=defaults/main.yml) - Additional arguments to *`satellite-installation`* command.
+* `initial_satellite_org: "String"` - (Default=defaults/main.yml) - Initial satellite organization name.
+* `env_type: "String"` - (Required) - directory inside ./configs/{{ env_type }}, which will be used to keep pre & post setup files. 
 * `firewall_services: [List]` - (Default=defaults/main.yml) - List of firewall services to enable
 * `firewall_ports: [List]` - (Default=defaults/main.yml) - List of firewall ports to enable
-* `satellite_org_set_default: Bool` - (Default=true) - Wheter to create an org as default org, or additional one
-* `env_type: "String"` - (Required) - directory inside ./configs/{{ env_type }}, which will be used to keep pre & post setup files. 
 
 
 Sample variable example 
