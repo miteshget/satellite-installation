@@ -42,29 +42,31 @@ Tags
 ----
 
 
-|{tag1} |Consistent tag for all satellite install tasks
-|{tag2} |For firewall tasks
-|{tag3} |For host update tasks
-|{tag4} |For satellite setup tasks
+* *`install_satellite`* - Consistent tag for all satellite install tasks
+* *`configure_satellite`* - For satellite setup tasks
+* *`install_firewall`* - For firewall tasks
+* *`configure_firewall`* - For host update tasks
+
 
 
 * Example tags
 
 ```
 ## Tagged jobs
-ansible-playbook playbook.yml --tags install_satellite
+[user@node ~]$ ansible-playbook playbook.yml -e @./sample_vars.yml --tags install_satellite
 
 ## Skip tagged jobs
-ansible-playbook playbook.yml --skip-tags install_satellite
+[user@node ~]$ ansible-playbook playbook.yml -e @./sample_vars.yml --skip-tags configure_satellite
 ```
 
 
 Example Playbook
 ----------------
 
-How to use your role (for instance, with variables passed in playbook).
+How to use the role in playbook and variables are put in sample_vars.yml.
+
 ```
-[user@desktop ~]$ cat sample_vars.yml
+[user@node ~]$ cat sample_vars.yml
 satellite_version: 6.7
 satellite_admin: 'admin'
 satellite_admin_password: 'changeme'
@@ -76,19 +78,17 @@ firewall_ports:
   - 80/tcp
   - 443/tcp
 
-[user@desktop ~]$ cat playbook.yml
+[user@node ~]$ cat playbook.yml
 - hosts: satellite.example.com
-  vars_files:
-    - sample_vars.yml
   roles:
-    - satellite-public-hostname
     - satellite-install
 
-[user@desktop ~]$ ansible-playbook playbook.yml -e 'satellite_admin: admin' -e 'satellite_admin_password: password'
+[user@node ~]$ ansible-playbook playbook.yml -e @./sample_vars.yml
 ```
-
+License
+-------
+GPLv3
 
 Author Information
 ------------------
-
 Mitesh The Mouse <mitsharm@redhat.com>
