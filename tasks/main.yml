@@ -35,7 +35,6 @@
 
 - name: Satellite Post-configuration tasks
   include_tasks: ./configs/{{ env_type }}/satellite_post_configuration.yml
+  when: __post_configuration.stat.exists
   tags:
     - configure_satellite
-    
-  when: __post_configuration.stat.exists 
