@@ -41,21 +41,28 @@ firewall_ports:
 
 Pre-satellite installation tasks
 --------------------------------
+In case, you have some pre satellite package installation tasks then create following file in given path and write your tasks otherwise no need to create this file. Default is ignore if file is not exist. 
 
-./configs/{{ env_type }}/satellite_pre_installation.yml
+* ./configs/{{ env_type }}/satellite_pre_installation.yml
 
 
 Post-satellite installation tasks
 ---------------------------------
-./configs/{{ env_type }}/satellite_post_installation.yml
+In case, you have some post satellite package installation tasks then create following file in given path and write your tasks otherwise no need to create this file. Default is ignore if file is not exist.
+
+* ./configs/{{ env_type }}/satellite_post_installation.yml
 
 Pre-satellite configuration tasks
 ---------------------------------
-./configs/{{ env_type }}/satellite_pre_configuration.yml
+In case, you have some pre satellite configuration *`(Just before satellite-installation command execution)`* tasks then create following file in given path and write your tasks otherwise no need to create this file. Default is ignore if file is not exist.
+
+* ./configs/{{ env_type }}/satellite_pre_configuration.yml
 
 Post-satellite configuration tasks
 ---------------------------------
-./configs/{{ env_type }}/satellite_post_configuration.yml
+In case, you have some post satellite configuration *`(Just after satellite-installation command execution finishes)`* tasks then create following file in given path and write your tasks otherwise no need to create this file. Default is ignore if file is not exist.
+
+* ./configs/{{ env_type }}/satellite_post_configuration.yml
 
 Tags
 ----
