@@ -26,10 +26,9 @@
 
 - name: Satellite Post-installation tasks
   include_tasks: ./configs/{{ env_type }}/satellite_post_installation.yml
-  when: __pre_installation.stat.exists 
+  when: __pre_installation.stat.exists
   tags:
     - install_satellite
-
 
 ####### Satellite Pre Configuration Tasks ###############
 - name: Collecting stat of ./configs/{{ env_type }}/satellite_pre_configuration.yml file
@@ -41,14 +40,14 @@
 
 - name: Satellite Pre-configuration tasks
   include_tasks: ./configs/{{ env_type }}/satellite_pre_configuration.yml
-  when: __pre_configuration.stat.exists 
+  when: __pre_configuration.stat.exists
   tags:
     - configure_satellite
 
 ########### Satellite Configuration ########
 - name: configure satellite
   command: >-
-    satellite-installer 
+    satellite-installer
     {% if '--scenario' not in satellite_arguments %} --scenario satellite{% endif %}
     {% if '-admin-username' not in satellite_arguments %}
     {% if satellite_version is version('6.4', '<=') %} --foreman-admin-username {{ satellite_admin | default('admin') }}
@@ -69,4 +68,4 @@
   async: 3600
   poll: 60
   tags:
-    - configure_satellite
+    - install_satellite

@@ -16,7 +16,7 @@
 
 - name: Satellite Pre-installation tasks
   include_tasks: ./configs/{{ env_type }}/satellite_pre_installation.yml
-  when: __pre_installation.stat.exists 
+  when: __pre_installation.stat.exists
   tags:
     - install_satellite
 
