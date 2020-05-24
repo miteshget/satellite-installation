@@ -24,8 +24,7 @@ Role Variables
 
 * Example variables
 
-[source=text]
-----
+```
 satellite_version: 6.7
 satellite_admin: admin
 satellite_admin_password: password
@@ -36,38 +35,33 @@ firewall_ports:
   - 22/tcp
   - 80/tcp
   - 443/tcp
-----
-
+```
 Tags
 ---
 
-|===
+
 |{tag1} |Consistent tag for all satellite install tasks
 |{tag2} |For firewall tasks
 |{tag3} |For host update tasks
 |{tag4} |For satellite setup tasks
-|===
+
 
 * Example tags
 
-[source=text]
-----
+```
 ## Tagged jobs
 ansible-playbook playbook.yml --tags install_satellite
 
 ## Skip tagged jobs
 ansible-playbook playbook.yml --skip-tags install_satellite
-
-----
+```
 
 
 Example Playbook
 ----------------
 
 How to use your role (for instance, with variables passed in playbook).
-
-[source=text]
-----
+```
 [user@desktop ~]$ cat sample_vars.yml
 satellite_version: 6.7
 satellite_admin: 'admin'
@@ -89,7 +83,7 @@ firewall_ports:
     - satellite-install
 
 [user@desktop ~]$ ansible-playbook playbook.yml -e 'satellite_admin: admin' -e 'satellite_admin_password: password'
-----
+```
 
 Dependencies
 ------------
