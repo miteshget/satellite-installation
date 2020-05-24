@@ -1,6 +1,6 @@
 
 
-Role: satellite-installation
+Role: satellite-installer
 ============================
 
 This role installs and configure satellite. Also setup & configure firewalld and it's rules.
@@ -17,7 +17,7 @@ Role Variables
 * `satellite_version: "Digit"`          - (Required) - satellite version
 * `satellite_admin: "String"`           - (Required) - Satellite admin username
 * `satellite_admin_password: "String"`  - (Required) - Satellite admin password
-* `satellite_arguments: [List]` - (Default=defaults/main.yml) - Additional arguments to *`satellite-installation`* command.
+* `satellite_arguments: [List]` - (Default=defaults/main.yml) - Additional arguments to *`satellite-installer`* command.
 * `initial_satellite_org: "String"` - (Default=defaults/main.yml) - Initial satellite organization name.
 * `env_type: "String"` - (Required) - directory inside ./configs/{{ env_type }}, which will be used to keep pre & post setup files. 
 * `firewall_services: [List]` - (Default=defaults/main.yml) - List of firewall services to enable
@@ -54,13 +54,13 @@ In case, you have some post satellite package installation tasks then create fol
 
 Pre-satellite configuration tasks
 ---------------------------------
-In case, you have some pre satellite configuration *`(Just before satellite-installation command execution)`* tasks then create following file in given path and write your tasks otherwise no need to create this file. Default is ignore if file is not exist.
+In case, you have some pre satellite configuration *`(Just before satellite-installer command execution)`* tasks then create following file in given path and write your tasks otherwise no need to create this file. Default is ignore if file is not exist.
 
 * ./configs/{{ env_type }}/satellite_pre_configuration.yml
 
 Post-satellite configuration tasks
 ---------------------------------
-In case, you have some post satellite configuration *`(Just after satellite-installation command execution finishes)`* tasks then create following file in given path and write your tasks otherwise no need to create this file. Default is ignore if file is not exist.
+In case, you have some post satellite configuration *`(Just after satellite-installer command execution finishes)`* tasks then create following file in given path and write your tasks otherwise no need to create this file. Default is ignore if file is not exist.
 
 * ./configs/{{ env_type }}/satellite_post_configuration.yml
 

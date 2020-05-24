@@ -14,6 +14,9 @@ firewall_ports:
 
 initial_satellite_org: "prod"
 
-# this will be added or updated to exist arguments/options to satellite-installation command line
+# This is Sample example                  #
+# to add/update                           #
+# satellite-installer command line        #
+
 satellite_arguments:
   - --foreman-initial-organization "{{ initial_satellite_org }}"
