@@ -18,15 +18,15 @@
 
 ####### Satellite Post Installation Tasks ###############
 - name: Satellite Post-installation tasks file only first match
-  include_tasks: "{{ item }}" 
-  loop: "{{ query( 'first_found', satellite_post_installation_task_files | d('/no/file/provided') , errors='ignore') }}" 
+  include_tasks: "{{ item }}"
+  loop: "{{ query( 'first_found', satellite_post_installation_task_files | d('/no/file/provided') , errors='ignore') }}"
   tags:
     - install_satellite
 
 ####### Satellite Pre Configuration Tasks ###############
 - name: Satellite Pre-configuration tasks file only first match
-  include_tasks: "{{ item }}" 
-  loop: "{{ query( 'first_found', satellite_pre_configuration_task_files | d('/no/file/provided') , errors='ignore') }}" 
+  include_tasks: "{{ item }}"
+  loop: "{{ query( 'first_found', satellite_pre_configuration_task_files | d('/no/file/provided') , errors='ignore') }}"
   tags:
     - configure_satellite
 

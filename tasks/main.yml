@@ -8,8 +8,8 @@
 
 ##### Pre satellite installation tasks #########
 - name: Satellite Pre-installation tasks file only first match
-  include_tasks: "{{ item }}" 
-  loop: "{{ query( 'first_found', satellite_pre_installation_task_files | d('/no/file/provided') , errors='ignore') }}" 
+  include_tasks: "{{ item }}"
+  loop: "{{ query( 'first_found', satellite_pre_installation_task_files | d('/no/file/provided') , errors='ignore') }}"
   tags:
     - install_satellite
 
@@ -20,7 +20,7 @@
 
 ##### Post satellite configuration tasks #########
 - name: Satellite Post-configuration tasks file only first match
-  include_tasks: "{{ item }}" 
-  loop: "{{ query( 'first_found', satellite_post_configuration_task_files | d('/no/file/provided') , errors='ignore') }}" 
+  include_tasks: "{{ item }}"
+  loop: "{{ query( 'first_found', satellite_post_configuration_task_files | d('/no/file/provided') , errors='ignore') }}"
   tags:
     - configure_satellite
