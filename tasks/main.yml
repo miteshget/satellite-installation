@@ -7,16 +7,9 @@
     - install_firewall
 
 ##### Pre satellite installation tasks #########
-- name: Collecting stat of ./configs/{{ env_type }}/satellite_pre_installation.yml file
-  stat:
-    path: ./configs/{{ env_type }}/satellite_pre_installation.yml
-  register: __pre_installation
-  tags:
-    - install_satellite
-
-- name: Satellite Pre-installation tasks
-  include_tasks: ./configs/{{ env_type }}/satellite_pre_installation.yml
-  when: __pre_installation.stat.exists
+- name: Satellite Pre-installation tasks file only first match
+  include_tasks: "{{ item }}" 
+  loop: "{{ query( 'first_found', satellite_pre_installation_task_files | d('/no/file/provided') , errors='ignore') }}" 
   tags:
     - install_satellite
 
@@ -26,15 +19,8 @@
   when: satellite_version is defined
 
 ##### Post satellite configuration tasks #########
-- name: Collecting stat of ./configs/{{ env_type }}/satellite_post_configuration.yml file
-  stat:
-    path: ./configs/{{ env_type }}/satellite_post_configuration.yml
-  register: __post_configuration
-  tags:
-    - configure_satellite
-
-- name: Satellite Post-configuration tasks
-  include_tasks: ./configs/{{ env_type }}/satellite_post_configuration.yml
-  when: __post_configuration.stat.exists
+- name: Satellite Post-configuration tasks file only first match
+  include_tasks: "{{ item }}" 
+  loop: "{{ query( 'first_found', satellite_post_configuration_task_files | d('/no/file/provided') , errors='ignore') }}" 
   tags:
     - configure_satellite
