@@ -17,30 +17,16 @@
     - install_satellite
 
 ####### Satellite Post Installation Tasks ###############
-- name: Collecting stat of ./configs/{{ env_type }}/satellite_post_installation.yml file
-  stat:
-    path: ./configs/{{ env_type }}/satellite_post_installation.yml
-  register: __post_installation
-  tags:
-    - install_satellite
-
-- name: Satellite Post-installation tasks
-  include_tasks: ./configs/{{ env_type }}/satellite_post_installation.yml
-  when: __pre_installation.stat.exists
+- name: Satellite Post-installation tasks file only first match
+  include_tasks: "{{ item }}" 
+  loop: "{{ query( 'first_found', satellite_post_installation_task_files | d('/no/file/provided') , errors='ignore') }}" 
   tags:
     - install_satellite
 
 ####### Satellite Pre Configuration Tasks ###############
-- name: Collecting stat of ./configs/{{ env_type }}/satellite_pre_configuration.yml file
-  stat:
-    path: ./configs/{{ env_type }}/satellite_pre_configuration.yml
-  register: __pre_configuration
-  tags:
-    - configuration_satellite
-
-- name: Satellite Pre-configuration tasks
-  include_tasks: ./configs/{{ env_type }}/satellite_pre_configuration.yml
-  when: __pre_configuration.stat.exists
+- name: Satellite Pre-configuration tasks file only first match
+  include_tasks: "{{ item }}" 
+  loop: "{{ query( 'first_found', satellite_pre_configuration_task_files | d('/no/file/provided') , errors='ignore') }}" 
   tags:
     - configure_satellite
 

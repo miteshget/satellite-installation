@@ -17,6 +17,25 @@ initial_satellite_org: "prod"
 # This is Sample example                  #
 # to add/update                           #
 # satellite-installer command line        #
-
 satellite_arguments:
   - --foreman-initial-organization "{{ initial_satellite_org }}"
+
+# Only first found file will be used not all of them #
+satellite_pre_installation_task_files:
+  - ../../satellite_pre_installation.yml
+  - ../configs/{{ env_type }}/satellite_pre_installation.yml
+
+# Only first found file will be used not all of them #
+satellite_post_installation_task_files:
+  - ../../satellite_post_installation.yml
+  - ../configs/{{ env_type }}/satellite_pre_installation.yml
+
+# Only first found file will be used not all of them #
+satellite_pre_configuration_task_files:
+  - ../../satellite_pre_configuration.yml
+  - ../configs/{{ env_type }}/satellite_pre_configuration.yml
+
+# Only first found file will be used not all of them #
+satellite_post_configuration_task_files:
+  - ../../satellite_post_configuration.yml
+  - ../configs/{{ env_type }}/satellite_post_configuration.yml
